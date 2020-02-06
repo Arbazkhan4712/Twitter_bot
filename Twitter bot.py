@@ -15,34 +15,40 @@ def update_status():
     api.update_status("ADD THE STATUS YOU WANT!")
 
 def reply_new_tweets(): # it will reply to retweets as well
-    tweets = api.user_timeline(screen_name="addusername")
+    user_name = input(print("Enter User Name to reply"))
+    tweets = api.user_timeline(screen_name=user_name)
     firt_tweet = tweets[0]
     print(firt_tweet.text)
     print("done")
-    api.update_status('@addusername cool this is response from AI JARVIS bot', firt_tweet.id)
+    api.update_status('@{} cool this is response from AI JARVIS bot'.format(user_name), firt_tweet.id)
 
 def reply_with_media(): # it will reply to retweets as well
-    tweets = api.user_timeline(screen_name="addusername")
+    user_name = input(print("Enter User Name to reply"))
+    filename = input(print("Enter the file name"))
+    tweets = api.user_timeline(screen_name=user_name)
     firt_tweet = tweets[0]
     print(firt_tweet.text)
     print("done")
-    api.update_status('abc.jpg','@addusername cool this is response from AI JARVIS bot', firt_tweet.id) #add the file name 
+    api.update_status(filename,'@{} cool this is response from AI JARVIS bot'.format(user_name), firt_tweet.id) #add the file name 
 
 def no_retweet(): # it will not reply to retweets
-    tweets = api.user_timeline(screen_name="addusername")
+    user_name = input(print("Enter User Name to reply"))
+    tweets = api.user_timeline(screen_name=user_name)
     for tweet in tweets:
         if tweet.text[0:2] != "RT":
-            api.update_status('@addusername cool this is response from AI JARVIS bot', firt_tweet.id)
+            api.update_status('@{} cool this is response from AI JARVIS bot'.format(user_name), firt_tweet.id)
 
 
 def no_retweet_with_media(): # it will not reply to retweets 
-    tweets = api.user_timeline(screen_name="addusername")
+    user_name = input(print("Enter User Name to reply"))
+    filename = input(print("Enter the file name"))
+    tweets = api.user_timeline(screen_name=user_name)
     for tweet in tweets:
         if tweet.text[0:2] != "RT":
             firt_tweet = tweets[0]
             print(firt_tweet.text)
             print("done")
-            api.update_status('abc.jpg','@addusername cool this is response from AI JARVIS bot', firt_tweet.id) #add the file name 
+            api.update_status(filename,'@{} cool this is response from AI JARVIS bot'.format(user_name), firt_tweet.id) #add the file name 
 
 if  __name__ == "__main__":
     a = input(print("Press 1 to Get All Tweets \n Press 2 to Reply To All Tweets & Retweets \n Press 3 to Reply To Tweets & Retweets With Media \n Press 4 to Reply To Only Tweets No Retweet \n Press 5 to Reply To Only Tweets with Media No Retweet \n  Press 6 to Update Status\n"))
